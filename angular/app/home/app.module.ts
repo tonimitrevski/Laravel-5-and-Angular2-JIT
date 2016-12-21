@@ -7,6 +7,7 @@ import { COMPILER_PROVIDERS } from '@angular/compiler';
 
 import { AppComponent }   from './app.component';
 import {DynamicTypeBuilder} from "./dynamic/type.builder";
+import {HtmlService} from "../services/HtmlService";
 
 @NgModule({
     imports:      [
@@ -15,13 +16,15 @@ import {DynamicTypeBuilder} from "./dynamic/type.builder";
     declarations: [ AppComponent],
     providers: [
         COMPILER_PROVIDERS, // this is an app singleton declaration
-        DynamicTypeBuilder
+        DynamicTypeBuilder,
+        HtmlService
     ],
     bootstrap:    [ AppComponent ]
 })
 
 export class AppModule {
-    constructor() {
-        localStorage.setItem('template', document.querySelector('app').innerHTML);
+    constructor(private htmlService: HtmlService) {
+        htmlService.html = document.querySelector('app').innerHTML;
+/*        localStorage.setItem('template', document.querySelector('app').innerHTML);*/
     }
 }

@@ -2,6 +2,7 @@ import { Component, ComponentRef, ViewChild, ViewContainerRef, AfterViewInit}   
 import { ComponentFactory} from '@angular/core';
 
 import { IHaveDynamicData, DynamicTypeBuilder } from './dynamic/type.builder';
+import {HtmlService} from "../services/HtmlService";
 
 @Component({
     selector: 'app',
@@ -24,6 +25,7 @@ export class AppComponent implements AfterViewInit
     // wee need Dynamic component builder
     constructor(
         protected typeBuilder: DynamicTypeBuilder,
+        private htmlService: HtmlService
     ) {}
 
     /** Get a Factory and create a component */
@@ -33,9 +35,8 @@ export class AppComponent implements AfterViewInit
         if (this.componentRef) {
             this.componentRef.destroy();
         }
-
         // here we get a TEMPLATE with dynamic content === TODO
-        let template = localStorage.getItem('template');
+        let template = this.htmlService.html;
 
 
         // here we get Factory (just compiled or from cache)

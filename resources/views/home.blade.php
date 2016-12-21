@@ -5,7 +5,7 @@
     </head>
     <body>
     <app style="display: none">
-        <a href="javascript:;" (click)="example()">This is example Text</a>
+        <a href="javascript:;" (click)="example()">This is example Text With Global Variable</a>
     </app>
     </body>
     @if (App::environment('production'))
